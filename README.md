@@ -1,0 +1,1 @@
+# Different OCR tasks in python
