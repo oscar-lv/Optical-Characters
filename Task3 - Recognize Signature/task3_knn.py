@@ -2,7 +2,11 @@
 
 import os
 
-import numpy as  np
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+import numpy as np
+import matplotlib.pyplot as plt
+import pickle
 from PIL import Image
 from sklearn.model_selection import train_test_split
 
@@ -52,3 +56,22 @@ k = 4
 model = KNeighborsClassifier(n_neighbors=k)
 model.fit(X_train, y_train)
 model.score(X_test, y_test)
+
+       
+# Model evaluation
+
+model = pickle.load(open('model_knn.sav', 'rb'))
+y = model.predict(X_test)
+    
+print("EVALUATION ON TESTING DATA")
+print(classification_report(y, y_test))
+
+print ("Confusion matrix")
+b = classification_report(y_test,y)
+a = confusion_matrix(y_test,y)
+fig = plt.figure()
+plt.matshow(a)
+plt.title('Task 2: Confusion Matrix On EMNIST DATA')
+plt.colorbar()
+plt.ylabel('True Label')
+plt.xlabel('Predicted Label')
