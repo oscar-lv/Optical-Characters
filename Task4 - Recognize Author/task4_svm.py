@@ -5,6 +5,7 @@ import os
 import numpy as  np
 from PIL import Image
 from sklearn.model_selection import train_test_split
+from skimage.feature import hog
 
 # Paths and mapping
 DATADIR = './training'
@@ -23,16 +24,22 @@ def create_training_data():
             try:
                 image_op = Image.open(os.path.join(path, image))
                 np_im = np.array(image_op)
-                training_data.append([np_im, class_num])
+                a,c = hog(np_im,orientations=10, pixels_per_cell=(20,20),cells_per_block=(1, 1),block_norm= 'L2',visualize=True) #Extracting HoG Features
+                training_data.append([c, class_num]) # Using HoG Image
             except:
                 pass
 
 
 create_training_data()
 
+from skimage import data
 import random
 
 random.shuffle(training_data)
+
+
+import matplotlib.pyplot as plt
+
 
 X0 = []
 y = []

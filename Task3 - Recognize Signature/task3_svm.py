@@ -23,7 +23,7 @@ def create_training_data():
             try:
                 image_op = Image.open(os.path.join(path, image))
                 np_im = np.array(image_op)
-                training_data.append([np_im, class_num])
+                training_data.append([np_im, class_num]) 
             except:
                 pass
 
