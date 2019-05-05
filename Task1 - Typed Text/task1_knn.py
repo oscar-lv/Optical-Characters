@@ -51,3 +51,7 @@ k = 1
 model = KNeighborsClassifier(n_neighbors=k)
 model.fit(X_train, y_train)
 model.score(X_test, y_test)
+
+#import pickle
+#pickle.dump(model, open('task1_knn.sav', 'wb'))
+

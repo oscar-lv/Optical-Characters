@@ -24,7 +24,7 @@ def create_training_data():
             try:
                 image_op = Image.open(os.path.join(path, image))
                 np_im = np.array(image_op)
-                a,c = hog(np_im,orientations=10, pixels_per_cell=(20,20),cells_per_block=(1, 1),block_norm= 'L2',visualize=True) #Extracting HoG Features
+                a,c = hog(np_im,orientations=10 ,pixels_per_cell=(20,20),cells_per_block=(1, 1),block_norm= 'L2',visualize=True) #Extracting HoG Features
                 training_data.append([c, class_num]) # Using HoG Image
             except:
                 pass
@@ -32,13 +32,9 @@ def create_training_data():
 
 create_training_data()
 
-from skimage import data
 import random
 
 random.shuffle(training_data)
-
-
-import matplotlib.pyplot as plt
 
 
 X0 = []

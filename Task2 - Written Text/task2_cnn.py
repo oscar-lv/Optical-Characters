@@ -18,7 +18,7 @@ def create_model():
     model.add(Dense(47, activation='softmax'))
     return model
 
-def create_model():
+def create_model2():
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(1,1), input_shape=(1, 28, 28), activation='relu'))
     model.add(MaxPooling2D(pool_size=(1, 1)))
@@ -43,12 +43,12 @@ def larger_model():
 	return model
 
 # Training and saving the model
-model = larger_model()
+model = create_model2()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=128)
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Baseline Error: %.2f%%" % (100 - scores[1] * 100))
-model.save('task2_cnnx.h5')
+#model.save('task2_cnnx.h5')
 
 # Evaluation
 score = model.evaluate(X_test, y_test)
